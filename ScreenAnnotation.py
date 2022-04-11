@@ -37,10 +37,10 @@ def calculate_similarity(img, templ):
 def roll_burrito():
     kb.press(Key.left) # Presses "left" key
     kb.release(Key.left)
-    time.sleep(0.1)
+    time.sleep(0)
     kb.press(Key.right)
     kb.release(Key.right)
-    time.sleep(0.1)
+    time.sleep(0)
     kb.press(Key.up) # Presses "up" key
     kb.release(Key.up)
 
@@ -50,7 +50,7 @@ def drag_drop_ingredient():
     dropframe = cv.cvtColor(np.array(ImageGrab.grab(bbox=(30, 810, 1920, 811))), cv.COLOR_BGR2GRAY)#x1, y1, x2, y2 https://www.codegrepper.com/code-examples/python/python+cv2+screen+capture
     for x in range(len(dropframe[0])):
         burritoX = 600
-        if dropframe[0][x]>220:
+        if dropframe[0][x]>=235:
             burritoX = int(x*0.87)+340
             break
     #autoit.mouse_move(int(REFERENCES[customerOrder][1]), int(REFERENCES[customerOrder][2]),5)
@@ -98,6 +98,6 @@ while True:
                 drag_drop_ingredient()
             roll_burrito()
         elif (customerOrder == "fuzzy"):
-            pass
+            roll_burrito()
         else:
             drag_drop_ingredient()
